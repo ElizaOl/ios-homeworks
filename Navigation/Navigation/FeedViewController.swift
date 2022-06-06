@@ -8,24 +8,28 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    
-    let pushButtonPost = UIButton()
-    
-    var testPost = Post(title: "Мой пост")
+
+    var myPost = Post(title: "Мой пост")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .systemBackground
         self.title = "Лента"
-        
-        self.pushButtonPost.setTitle("Открыть пост", for: .normal)
+
         self.view.addSubview(pushButtonPost)
-        self.pushButtonPost.frame = CGRect(x: 50, y: 200, width: 300, height: 30)
         self.pushButtonPost.addTarget(self, action: #selector(buttonTapPost), for: .touchUpInside)
-        self.pushButtonPost.setTitleColor(.black, for: .normal)
-        self.pushButtonPost.backgroundColor = .systemBlue
     }
+    
+    let pushButtonPost: UIButton = {
+        let button = UIButton()
+        button.setTitle("Открыть пост", for: .normal)
+        button.frame = CGRect(x: 50, y: 200, width: 300, height: 30)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .systemBlue
+
+        return button
+    }()
     
     @objc func buttonTapPost() {
         let post = PostViewController()

@@ -9,7 +9,15 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
-    let pushButtonAlert = UIButton()
+    let pushButtonAlert: UIButton = {
+        let button = UIButton()
+        button.setTitle("Удалить пост", for: .normal)
+        button.frame = CGRect(x: 50, y: 200, width: 300, height: 30)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .systemBlue
+
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,12 +25,8 @@ class InfoViewController: UIViewController {
         self.title = "Настройки"
         self.view.backgroundColor = .systemBackground
 
-        self.pushButtonAlert.setTitle("Удалить пост", for: .normal)
         self.view.addSubview(pushButtonAlert)
-        self.pushButtonAlert.frame = CGRect(x: 50, y: 200, width: 300, height: 30)
         self.pushButtonAlert.addTarget(self, action: #selector(buttonTapAlert), for: .touchUpInside)
-        self.pushButtonAlert.setTitleColor(.black, for: .normal)
-        self.pushButtonAlert.backgroundColor = .systemBlue
     }
 
     @objc func buttonTapAlert() {
