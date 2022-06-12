@@ -10,11 +10,11 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    let profileImage: UIImageView = {
+    let avatarImageView: UIImageView = {
         let image = UIImageView(image: UIImage(named: "photo"))
         image.layer.borderWidth = 3
         image.layer.borderColor = UIColor.white.cgColor
-        image.layer.cornerRadius = 180
+        image.layer.cornerRadius = 50
         image.clipsToBounds = true
         image.backgroundColor = .white
         
@@ -25,7 +25,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
-        label.text = "Имя пользователя"
+        label.text = "Винсент Ван Гог"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -36,14 +36,20 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
-        label.text = "В ожидании"
+        label.text = "В ожидании..."
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
     }()
     
-    let statusButton: UIButton = {
+    let statusTextField: UITextField = {
+        let statusText = UITextField()
+        
+        return statusText
+    }()
+    
+    let setStatusButton: UIButton = {
         let button = UIButton()
         button.setTitle("Показать статус", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -63,24 +69,49 @@ class ProfileHeaderView: UIView {
         super.init(frame: frame)
         
         addSubview(fullNameLabel)
+        fullNameLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(statusLabel)
-        addSubview(profileImage)
-        addSubview(statusButton)
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(avatarImageView)
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(setStatusButton)
+        setStatusButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            avatarImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+            
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            fullNameLabel.widthAnchor.constraint(equalToConstant: 250),
+            fullNameLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            statusLabel.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: -18),
+            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            
+            setStatusButton.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 34),
+            setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50)
+            
+        ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        profileImage.frame = CGRect(x: 16, y: Int(safeAreaInsets.top) + 16, width: 100, height: 100)
-        fullNameLabel.frame = CGRect(x: profileImage.frame.maxX + 16, y: safeAreaInsets.top + 27, width: bounds.width - 148, height: 20)
-        statusLabel.frame = CGRect(x: profileImage.frame.maxX + 16, y: fullNameLabel.frame.maxY + 34, width: bounds.width - 148, height: 20)
-        statusButton.frame = CGRect(x: 16, y: statusLabel.frame.maxY + 34, width: bounds.width - 32, height: 50)
-    }
-    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        
+//        avatarImageView.frame = CGRect(x: 16, y: Int(safeAreaInsets.top) + 16, width: 100, height: 100)
+//        fullNameLabel.frame = CGRect(x: avatarImageView.frame.maxX + 16, y: safeAreaInsets.top + 27, width: bounds.width - 148, height: 20)
+//        statusLabel.frame = CGRect(x: avatarImageView.frame.maxX + 16, y: fullNameLabel.frame.maxY + 34, width: bounds.width - 148, height: 20)
+//        setStatusButton.frame = CGRect(x: 16, y: statusLabel.frame.maxY + 34, width: bounds.width - 32, height: 50)
+//    }
+
     @objc func buttonPress() {
         if statusLabel.text != nil {
             print((statusLabel.text)!)
