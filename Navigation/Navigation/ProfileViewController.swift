@@ -27,11 +27,10 @@ class ProfileViewController: UIViewController {
     
     private lazy var profileHeader = ProfileHeaderView()
     
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        profileHeader.frame = view.frame
-//    }
-    
-    
+    let TableView: UITableView = {
+        let table = UITableView()
+        
+        return table
+    }()
     
 }

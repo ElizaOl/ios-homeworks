@@ -103,14 +103,6 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        
-//        avatarImageView.frame = CGRect(x: 16, y: Int(safeAreaInsets.top) + 16, width: 100, height: 100)
-//        fullNameLabel.frame = CGRect(x: avatarImageView.frame.maxX + 16, y: safeAreaInsets.top + 27, width: bounds.width - 148, height: 20)
-//        statusLabel.frame = CGRect(x: avatarImageView.frame.maxX + 16, y: fullNameLabel.frame.maxY + 34, width: bounds.width - 148, height: 20)
-//        setStatusButton.frame = CGRect(x: 16, y: statusLabel.frame.maxY + 34, width: bounds.width - 32, height: 50)
-//    }
 
     @objc func buttonPress() {
         if statusLabel.text != nil {
