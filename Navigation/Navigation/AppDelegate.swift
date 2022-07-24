@@ -32,10 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         logInNC.tabBarItem.title = "Profile"
         logInNC.tabBarItem.image = UIImage(systemName: "person.fill")
         
-//        let nbAppearance: UINavigationBarAppearance = UINavigationBarAppearance()
-//        nbAppearance.configureWithDefaultBackground()
-//        UINavigationBar.appearance().standardAppearance = nbAppearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = nbAppearance
         
         let tbAppearance: UITabBarAppearance = UITabBarAppearance()
         tbAppearance.configureWithDefaultBackground()

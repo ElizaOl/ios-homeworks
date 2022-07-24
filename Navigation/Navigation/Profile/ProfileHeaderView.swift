@@ -17,6 +17,7 @@ class ProfileHeaderView: UIView {
         image.layer.cornerRadius = 50
         image.clipsToBounds = true
         image.backgroundColor = .white
+        image.translatesAutoresizingMaskIntoConstraints = false
         
         return image
     }()
@@ -25,8 +26,9 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
-        label.text = "Винсент Ван Гог"
+        label.text = "Vincent van Gogh"
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -36,8 +38,9 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
-        label.text = "В ожидании..."
+        label.text = "Waiting for something..."
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -45,13 +48,14 @@ class ProfileHeaderView: UIView {
     
     let statusTextField: UITextField = {
         let statusText = UITextField()
+        statusText.translatesAutoresizingMaskIntoConstraints = false
         
         return statusText
     }()
     
-    let setStatusButton: UIButton = {
+    lazy var setStatusButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Показать статус", for: .normal)
+        button.setTitle("Set status", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 4
@@ -61,22 +65,34 @@ class ProfileHeaderView: UIView {
         button.layer.shadowOffset.height = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(fullNameLabel)
-        fullNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(statusLabel)
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(avatarImageView)
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(setStatusButton)
-        setStatusButton.translatesAutoresizingMaskIntoConstraints = false
+        customAddSubview()
+        layoutConstraints()
+        self.backgroundColor = .white
         
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    
+    func customAddSubview() {
+        addSubview(fullNameLabel)
+        addSubview(statusLabel)
+        addSubview(avatarImageView)
+        addSubview(setStatusButton)
+    }
+    
+    func layoutConstraints() {
         NSLayoutConstraint.activate([
             avatarImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -99,17 +115,12 @@ class ProfileHeaderView: UIView {
         ])
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-
     @objc func buttonPress() {
         if statusLabel.text != nil {
             print((statusLabel.text)!)
         }
         else {
-            print("У пользователя отсутствует статус")
+            print("There is no status")
         }
     }
         
