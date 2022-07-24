@@ -22,20 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         let feedNC = UINavigationController(rootViewController: FeedViewController())
-        let profileNC = UINavigationController(rootViewController: ProfileViewController())
+        let logInNC = UINavigationController(rootViewController: LogInViewController())
         
-        tabBarController.viewControllers = [feedNC, profileNC]
+        tabBarController.viewControllers = [feedNC, logInNC]
         
-        feedNC.tabBarItem.title = "Лента"
+        feedNC.tabBarItem.title = "Feed"
         feedNC.tabBarItem.image = UIImage(systemName: "house")
         
-        profileNC.tabBarItem.title = "Профиль"
-        profileNC.tabBarItem.image = UIImage(systemName: "person.fill")
+        logInNC.tabBarItem.title = "Profile"
+        logInNC.tabBarItem.image = UIImage(systemName: "person.fill")
         
-        let nbAppearance: UINavigationBarAppearance = UINavigationBarAppearance()
-        nbAppearance.configureWithDefaultBackground()
-        UINavigationBar.appearance().standardAppearance = nbAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = nbAppearance
         
         let tbAppearance: UITabBarAppearance = UITabBarAppearance()
         tbAppearance.configureWithDefaultBackground()

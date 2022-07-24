@@ -11,7 +11,7 @@ class PostViewController: UIViewController {
 
     let pushButtonInfo: UIButton = {
         let button = UIButton()
-        button.setTitle("Настройки поста", for: .normal)
+        button.setTitle("Settings", for: .normal)
         button.frame = CGRect(x: 50, y: 500, width: 300, height: 30)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .systemBlue
@@ -21,13 +21,15 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        customizeView()
+    }
+    
+    func customizeView() {
         self.view.backgroundColor = .systemIndigo
-        self.title = FeedViewController().myPost.title
         
         self.view.addSubview(pushButtonInfo)
         self.pushButtonInfo.addTarget(self, action: #selector(buttonTapInfo), for: .touchUpInside)
-        
     }
 
     @objc func buttonTapInfo() {
